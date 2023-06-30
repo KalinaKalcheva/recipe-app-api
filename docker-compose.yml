@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  app:
+    build: 
+    # build in the current directory
+      context: .
+      args:
+      # overrides the dev=false from Dockerfile 
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+    # mapping dirs from our system to the container
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
