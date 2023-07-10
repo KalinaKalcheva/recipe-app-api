@@ -33,6 +33,7 @@ class PublicUserApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         user = get_user_model().objects.get(email=payload['email'])
+        print(user)
         self.assertTrue(user.check_password(payload['password']))
         self.assertNotIn('password', res.data)
 
@@ -52,7 +53,7 @@ class PublicUserApiTests(TestCase):
     def test_password_too_short_error(self):
         """test an error is returned if password is less than 5 chars."""
         payload = {
-            'email': 'test@example.com',
+            'email': 'tes3@example.com',
             'password':'test',
             'name': 'Test Name',
         }
