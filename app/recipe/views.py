@@ -12,7 +12,6 @@ from core.models import (
     Recipe,
     Tag,
 )
-
 from recipe import serializers
 
 

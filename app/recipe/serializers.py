@@ -1,4 +1,4 @@
-""""
+"""
 Serializers for recipe APIs
 """
 from rest_framework import serializers
