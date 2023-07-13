@@ -1,5 +1,5 @@
 """
-Tests for the Tags API
+Tests for the tags API.
 """
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -17,7 +17,7 @@ TAGS_URL = reverse('recipe:tag-list')
 
 
 def detail_url(tag_id):
-    """Create and return a Tag detail url."""
+    """Create and return a tag detail url."""
     return reverse('recipe:tag-detail', args=[tag_id])
 
 
@@ -27,13 +27,13 @@ def create_user(email='user@example.com', password='testpass123'):
 
 
 class PublicTagsApiTests(TestCase):
-    """Test unauthenticated API requests"""
+    """Test unauthenticated API requests."""
 
     def setUp(self):
         self.client = APIClient()
 
     def test_auth_required(self):
-        """Test auth is required for retrieving tags"""
+        """Test auth is required for retrieving tags."""
         res = self.client.get(TAGS_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -63,7 +63,7 @@ class PrivateTagsApiTests(TestCase):
         """Test list of tags is limited to authenticated user."""
         user2 = create_user(email='user2@example.com')
         Tag.objects.create(user=user2, name='Fruity')
-        tag = Tag.objects.create(user=self.user, name='Comfort food')
+        tag = Tag.objects.create(user=self.user, name='Comfort Food')
 
         res = self.client.get(TAGS_URL)
 
@@ -85,7 +85,7 @@ class PrivateTagsApiTests(TestCase):
         self.assertEqual(tag.name, payload['name'])
 
     def test_delete_tag(self):
-        """Test deleting a tag"""
+        """Test deleting a tag."""
         tag = Tag.objects.create(user=self.user, name='Breakfast')
 
         url = detail_url(tag.id)

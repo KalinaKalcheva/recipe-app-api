@@ -1,7 +1,6 @@
 """
-test custom django management commands
+Test custom Django management commands
 """
-
 from unittest.mock import patch
 
 from psycopg2 import OperationalError as Psycopg2Error
@@ -13,10 +12,10 @@ from django.test import SimpleTestCase
 
 @patch('core.management.commands.wait_for_db.Command.check')
 class CommandTests(SimpleTestCase):
-    """ Test commands"""
+    """Test commands."""
 
-    def test_for_db_ready(self, patched_check):
-        """ Test waiting for db if db ready"""
+    def test_wait_for_db_ready(self, patched_check):
+        """Test waiting for database if databaseb ready."""
 
         patched_check.return_value = True
 
@@ -25,8 +24,8 @@ class CommandTests(SimpleTestCase):
         patched_check.assert_called_once_with(databases=['default'])
 
     @patch('time.sleep')
-    def test_for_db_delay(self, patched_sleep, patched_check):
-        """ Test waiting for db when getting operational error"""
+    def test_wait_for_db_delay(self, patched_sleep, patched_check):
+        """ Test waiting for database when getting OperationalError."""
         patched_check.side_effect = [Psycopg2Error] * 2 + \
             [OperationalError] * 3 + [True]
 

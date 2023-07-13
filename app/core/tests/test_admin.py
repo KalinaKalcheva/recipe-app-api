@@ -1,7 +1,6 @@
 """
 Tests for the Django admin modifications.
 """
-
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -26,7 +25,7 @@ class AdminSiteTests(TestCase):
         )
 
     def test_users_list(self):
-        """Test that users are listed on the page"""
+        """Test that users are listed on page."""
         url = reverse('admin:core_user_changelist')
         res = self.client.get(url)
 
