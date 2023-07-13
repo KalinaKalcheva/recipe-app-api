@@ -12,6 +12,8 @@ services:
     volumes:
     # mapping dirs from our system to the container
       - ./app:/app
+      - dev-static-data:/vol/web
+
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -37,3 +39,5 @@ services:
 
 volumes:
   dev-db-data:
+  dev-static-data:
+
