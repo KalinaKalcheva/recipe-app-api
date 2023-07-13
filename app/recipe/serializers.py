@@ -8,6 +8,8 @@ from core.models import (
     Tag,
     Ingredient,
 )
+
+
 class IngredientSerializer(serializers.ModelSerializer):
     """Serializer for ingredients."""
 
@@ -60,7 +62,6 @@ class RecipeSerializer(serializers.ModelSerializer):
             )
 
             recipe.ingredients.add(ingredient_obj)
-
 
     def create(self, validated_data):
         """Create a recipe."""
