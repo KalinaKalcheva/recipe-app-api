@@ -91,7 +91,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        return Response(serializer.data, status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 @extend_schema_view(
     list=extend_schema(
@@ -123,7 +123,7 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
 
         return queryset.filter(
             user=self.request.user
-            ).order_by('-name').distinct()
+        ).order_by('-name').distinct()
 
 
 class TagViewSet(BaseRecipeAttrViewSet):
