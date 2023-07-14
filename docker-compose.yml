@@ -23,6 +23,7 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
+      - DEBUG=1
     # waits for the db service to start
     depends_on:
       - db
